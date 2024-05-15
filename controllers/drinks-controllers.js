@@ -1,6 +1,5 @@
 const {v4: uuid} = require('uuid');
 const HttpError = require('../models/http-error');
-const { create } = require('domain');
 
 let DUMMY_DRINKS = [
     {
@@ -21,7 +20,7 @@ let DUMMY_DRINKS = [
 ];
 
 const getAllDrinks = (req, res, next)=>{
-    res.json({movies : DUMMY_DRINKS});
+    res.json({drinks : DUMMY_DRINKS});
 };
 
 const getDrinkById = (req, res, next)=>{
@@ -34,7 +33,7 @@ const getDrinkById = (req, res, next)=>{
         next(error);
     }
     else{
-        res,json({drink});
+        res.json({drink});
     }
 };
 
@@ -77,7 +76,7 @@ const updateDrink = (req, res, next)=>{
 
 const deleteDrink = (req, res, next)=>{
     const drinkId = req.params.did;
-    DUMMY_DRINKS = DUMMY_DRINKS.filter(m=> d.id !== drinkId)
+    DUMMY_DRINKS = DUMMY_DRINKS.filter(d=> d.id !== drinkId)
     res.status(200).json({message: 'Bebida eliminada exitosamente'});
 };
 
